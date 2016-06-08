@@ -1,0 +1,10 @@
+root@debian:/home/jonas# ping6 -c4 ipv6.google.com
+PING ipv6.google.com(arn02s05-in-x0e.1e100.net) 56 data bytes
+64 bytes from arn02s05-in-x0e.1e100.net: icmp_seq=1 ttl=53 time=27.8 ms
+64 bytes from arn02s05-in-x0e.1e100.net: icmp_seq=2 ttl=53 time=26.6 ms
+64 bytes from arn02s05-in-x0e.1e100.net: icmp_seq=3 ttl=53 time=58.1 ms
+^C
+--- ipv6.google.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2005ms
+rtt min/avg/max/mdev = 26.681/37.546/58.127/14.561 ms
+root@debian:/home/jonas#   

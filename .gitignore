@@ -129,3 +129,5 @@ Person.java
 *.pdf
 
 /test/run_test/
+
+ssh-login.txt

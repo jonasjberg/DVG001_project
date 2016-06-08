@@ -1,0 +1,27 @@
+root@debian:/home/jonas# ifconfig
+eth0      Link encap:Ethernet  HWaddr 08:00:27:f1:08:4e  
+          inet addr:192.168.1.112  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet6 addr: fe80::a00:27ff:fef1:84e/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:2594 errors:0 dropped:5 overruns:0 frame:0
+          TX packets:1714 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:2146954 (2.0 MiB)  TX bytes:214275 (209.2 KiB)
+
+heipv6    Link encap:IPv6-in-IPv4  
+          inet6 addr: fe80::c0a8:170/64 Scope:Link
+          inet6 addr: 2001:470:27:3d4::2/64 Scope:Global
+          UP POINTOPOINT RUNNING NOARP  MTU:1480  Metric:1
+          RX packets:1766 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:912 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:1967453 (1.8 MiB)  TX bytes:97656 (95.3 KiB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:29 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:29 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:3221 (3.1 KiB)  TX bytes:3221 (3.1 KiB)
