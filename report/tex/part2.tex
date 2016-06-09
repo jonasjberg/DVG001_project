@@ -14,23 +14,23 @@
 % ______________________________________________________________________________
 
 
-\section{Skapande av IPv6-tunnel}
+\section{Konfiguration av servern}
 % ______________________________________________________________________________
-\subsection{Registrering av tunnelservice}
-% TODO: Skriv om registrering av konto för tunnel på https://www.tunnelbroker.net.
-För tunnel-service valdes gratistjänsten ``Tunnel Broker'' som erbjuds av
-Hurricane Electric.  Som ett första steg registrerades ett nytt konto. Sedan
-skapades en tunnel genom Hurricane Electrics web-interface för inloggade
-användare. Detta visas i Figur~\ref{fig:01}.
-
-\screenshot{include/01_tunnelbroker_new-tunnel}
-           {Skärmdump på skapande av en ny tunnel.}
-           {Skärmdump på skapande av en ny IPv6-tunnel i Hurricane Electrics
-            web-interface.}
-           {fig:01}
+\subsection{Konfiguration av fjärråtkomst}
+En del av projektets redovisning kräver att läraren ska kunna logga in på servern
+med SSH genom att använda serverns IPv6-adress. Här förbereds inför detta.
 
 
-\subsection{Statisk IP-adress för Debian-maskinen}
+\subsubection{Ny användare \texttt{higjxn}}
+% ______________________________________________________________________________
+En ny användare som läraren kan använda vid inloggning skapas med kommandot
+\texttt{adduser higjxn}.
+
+Den nya användaren läggs till i grupperna \texttt{adm} och \texttt{sudo} för
+att möjliggöra kontroll av serverns konfiguration och loggar. Detta görs med
+kommandot \texttt{adduser}.
+
+
 \subsubsection{Konfigurationsfilen \texttt{/etc/network/interfaces}}
 För att ge Debian-maskinen en statisk IP-adress ändrades filen \texttt{/etc/network/interfaces}
 för att få utseendet enligt Programlistning~\ref{listing:interfaces-static-ip}.
@@ -41,7 +41,7 @@ för att få utseendet enligt Programlistning~\ref{listing:interfaces-static-ip}
             {listing:interfaces-static-ip}
 
 
-\subsection{Konfiguration av router}
+\subsubsection{Konfiguration av router}
 I nätverkets routern reserveras en IP-adressen \texttt{192.168.1.112} till
 Debian-maskinens MAC-adress.
 
