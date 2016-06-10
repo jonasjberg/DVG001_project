@@ -24,13 +24,13 @@ med SSH genom att använda serverns IPv6-adress. Här förbereds inför detta.
 % ______________________________________________________________________________
 \subsection{Registrering av DNS-tjänst}
 För att underlätta test och ge en mer lätthanterlig adress registrerades ett
-konto hos \texttt{https://dynv6.com}, som erbjuder en gratis dynamisk
+konto hos \texttt{dynv6} \cite{ipv6:dynv6}, som erbjuder en gratis dynamisk
 DNS-tjänst. Detta efter tips på kursens Blackboard-forum.
 
 På så vis kan servern nås med en mer ``\emph{human-readable}'' adress,
 som i det här fallet valdes att vara \texttt{http://jonasjberg.dynv6.net}.
 
-För att testa adressen användes en IPv6-proxy på \texttt{http://www.ipv6proxy.net}.
+För att testa adressen användes en IPv6-proxy \cite{ipv6:ipv6proxy}.
 Resultatet av testet visas i Figur~\ref{fig:05}.
 
 \screenshot{include/05_ipv6proxy}
@@ -60,7 +60,8 @@ Programlistning~\ref{listing:ssh-higjxn}.
             {listing:ssh-higjxn}
 
 Ett andra test av åtkomst över SSH med hjälp av ett onlineverktyg på adressen
-\texttt{http://www.infobyip.com/sshservertest.php} visas i Figur~\ref{fig:06}.
+\texttt{http://www.infobyip.com/sshservertest.php} \cite{ipv6:sshservertest}
+visas i Figur~\ref{fig:06}.
 
 \screenshot{include/06_ssh-test}
            {Skärmdump på test av SSH-server.}

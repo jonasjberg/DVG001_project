@@ -17,11 +17,11 @@
 \section{Skapande av IPv6-tunnel}
 % ______________________________________________________________________________
 \subsection{Registrering av tunnelservice}
-% TODO: Skriv om registrering av konto för tunnel på https://www.tunnelbroker.net.
-För tunnel-service valdes gratistjänsten ``Tunnel Broker'' som erbjuds av
-Hurricane Electric.  Som ett första steg registrerades ett nytt konto. Sedan
-skapades en tunnel genom Hurricane Electrics web-interface för inloggade
-användare. Detta visas i Figur~\ref{fig:01}.
+För tunnel-service valdes gratistjänsten ``Tunnel Broker''
+\cite{ipv6:tunnelbroker} som erbjuds av Hurricane Electric.  
+Som ett första steg registrerades ett nytt konto. Sedan skapades en tunnel
+genom Hurricane Electrics web-interface för inloggade användare. 
+Detta visas i Figur~\ref{fig:01}.
 
 \screenshot{include/01_tunnelbroker_new-tunnel}
            {Skärmdump på skapande av en ny tunnel.}
@@ -31,9 +31,9 @@ användare. Detta visas i Figur~\ref{fig:01}.
 
 
 \subsection{Statisk IP-adress för Debian-maskinen}
-\subsubsection{Konfigurationsfilen \texttt{/etc/network/interfaces}}
-För att ge Debian-maskinen en statisk IP-adress ändrades filen \texttt{/etc/network/interfaces}
-för att få utseendet enligt Programlistning~\ref{listing:interfaces-static-ip}.
+För att ge Debian-maskinen en statisk IP-adress ändrades filen
+\texttt{/etc/network/interfaces} för att få utseendet enligt
+Programlistning~\ref{listing:interfaces-static-ip}.
 
 \configsource{include/conf_interfaces-static-ip}
             {Innehåll i konfigurationsfilen \texttt{/etc/network/interfaces}
@@ -52,8 +52,9 @@ Konfigurationen av tunneln sköts också genom att ändra i filen
 Programlistning~\ref{listing:interfaces-all}.
 
 \configsource{include/conf_interfaces-all}
-            {Fullständigt innehåll i konfigurationsfilen \texttt{/etc/network/interfaces}.}
-            {listing:interfaces-all}
+						 {Fullständigt innehåll i konfigurationsfilen
+							\texttt{/etc/network/interfaces}.}
+             {listing:interfaces-all}
 
 
 Raden \texttt{auto heipv6} gör att tunneln startas automatiskt.
@@ -82,28 +83,28 @@ Programlistning~\ref{listing:ip_addr-route} och \ref{listing:ping6}.
             {Test av ICMP/ping till server över IPv6.}
             {listing:ping6}
 
-Anslutningen verifieras också med hemsidorna \texttt{http://test-ipv6.com/}
-och \texttt{http://ipv6-test.com/} enligt skärmdumpar i Figur~\ref{fig:02}
-och Figur~\ref{fig:03}.
+Anslutningen verifieras också med hemsidorna \texttt{http://test-ipv6.com/} och
+\texttt{http://ipv6-test.com/} enligt skärmdumpar i Figur~\ref{fig:02} och
+Figur~\ref{fig:03}.
 Anslutning till servern \texttt{http://rigel.hig.se} visas i
 Figur~\ref{fig:04}.
 
 \screenshot{include/02_ipv6test}
            {Skärmdump på test av anslutningar.}
-           {Skärmdump på test av anslutningar till nätverket från med tjänsten
-            på \texttt{http://ipv6-test.com/}.}
+					 {Skärmdump på test av anslutningar till nätverket med tjänsten
+						\texttt{http://ipv6-test.com/}.}
            {fig:02}
 
 \screenshot{include/03_test-ipv6}
            {Skärmdump på test av anslutningar.}
-           {Skärmdump på test av anslutningar till nätverket från med tjänsten
-            på \texttt{http://test-ipv6.com/}.}
+           {Skärmdump på test av anslutningar till nätverket med tjänsten
+            \texttt{http://test-ipv6.com/}.}
            {fig:03}
 
 \screenshot{include/04_rigel-hig-se}
            {Skärmdump på test av anslutning.}
-           {Skärmdump på test av IPv6 genom anslutning till
-            \texttt{http://rigel.hig.se}.}
+					 {Skärmdump på test av IPv6 genom anslutning till
+						\texttt{http://rigel.hig.se}.}
            {fig:04}
 
 
