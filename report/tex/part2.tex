@@ -14,15 +14,34 @@
 % ______________________________________________________________________________
 
 
-\section{Konfiguration av servern}
 % ______________________________________________________________________________
+\section{Konfiguration av servern}
 \subsection{Konfiguration av fjärråtkomst}
 En del av projektets redovisning kräver att läraren ska kunna logga in på servern
 med SSH genom att använda serverns IPv6-adress. Här förbereds inför detta.
 
 
-\subsubection{Ny användare \texttt{higjxn}}
 % ______________________________________________________________________________
+\subsection{Registrering av DNS-tjänst}
+För att underlätta test och ge en mer lätthanterlig adress registrerades ett
+konto hos \texttt{https://dynv6.com}, som erbjuder en gratis dynamisk
+DNS-tjänst. Detta efter tips på kursens Blackboard-forum.
+
+På så vis kan servern nås med en mer ``\emph{human-readable}'' adress,
+som i det här fallet valdes att vara \texttt{http://jonasjberg.dynv6.net}.
+
+För att testa adressen användes en IPv6-proxy på \texttt{http://www.ipv6proxy.net}.
+Resultatet av testet visas i Figur~\ref{fig:05}.
+
+\screenshot{include/05_ipv6proxy}
+           {Skärmdump på test av anslutning till \texttt{dynv6.net}-adressen.}
+           {Skärmdump på test av anslutning till \texttt{dynv6.net}-adressen 
+					  \texttt{http://jonasjberg.dynv6.net} genom en IPv6-proxy.}
+           {fig:05}
+
+
+% ______________________________________________________________________________
+\subsubsection{Ny användare \texttt{higjxn}}
 En ny användare som läraren kan använda vid inloggning skapas med kommandot
 \texttt{adduser higjxn}.
 
@@ -31,79 +50,33 @@ att möjliggöra kontroll av serverns konfiguration och loggar. Detta görs med
 kommandot \texttt{adduser}.
 
 
-\subsubsection{Konfigurationsfilen \texttt{/etc/network/interfaces}}
-För att ge Debian-maskinen en statisk IP-adress ändrades filen \texttt{/etc/network/interfaces}
-för att få utseendet enligt Programlistning~\ref{listing:interfaces-static-ip}.
+% ______________________________________________________________________________
+\subsection{Test av fjärråtkomst}
+Test av inloggning över SSH med användaren \texttt{higjxn} visas i
+Programlistning~\ref{listing:ssh-higjxn}.
 
-\configsource{include/conf_interfaces-static-ip}
-            {Innehåll i konfigurationsfilen \texttt{/etc/network/interfaces}
- 					   för statisk IP-adress.}
-            {listing:interfaces-static-ip}
+\shellsource{include/cmd_ssh-higjxn}
+            {Test av SSH med användaren \texttt{higjxn}.}
+            {listing:ssh-higjxn}
 
+Ett andra test av åtkomst över SSH med hjälp av ett onlineverktyg på adressen
+\texttt{http://www.infobyip.com/sshservertest.php} visas i Figur~\ref{fig:06}.
 
-\subsubsection{Konfiguration av router}
-I nätverkets routern reserveras en IP-adressen \texttt{192.168.1.112} till
-Debian-maskinens MAC-adress.
+\screenshot{include/06_ssh-test}
+           {Skärmdump på test av SSH-server.}
+					 {Skärmdump på test av SSH-anslutning med hjälp av onlineverktyget 
+				    \texttt{http://www.infobyip.com/sshservertest.php}.}
+           {fig:06}
 
-
-\subsection{Konfiguration av tunneln}
-Konfigurationen av tunneln sköts också genom att ändra i filen
-\texttt{/etc/network/interfaces}, som får utseendet enligt
-Programlistning~\ref{listing:interfaces-all}.
-
-\configsource{include/conf_interfaces-all}
-            {Fullständigt innehåll i konfigurationsfilen \texttt{/etc/network/interfaces}.}
-            {listing:interfaces-all}
-
-
-Raden \texttt{auto heipv6} gör att tunneln startas automatiskt.
-Efter omstart visas den nya tunneln bland aktiva interface. Detta visas i  
-Programlistning~\ref{listing:ifconfig}.
-
-\shellsource{include/cmd_ifconfig}
-            {Verifiering av ändringar i \texttt{/etc/network/interfaces}
-             genom körning av \texttt{ifconfig}.}
-            {listing:ifconfig}
-
-Brandväggen \texttt{ufw} ställs in att tillåta all trafik från Hurricane
-Electrics IP-adress \texttt{216.66.80.90} genom att köra kommandot \texttt{sudo
-ufw allow proto ipv6 from 216.66.80.90}.
 
 % ______________________________________________________________________________
-\subsection{Test av tunneln}
-Anslutningen testas genom att köra kommandon enligt 
-Programlistning~\ref{listing:ip_addr-route} och \ref{listing:ping6}.
+\subsection{Servern som lokal IPv6-router}
+Debian-servern kan konfigureras för att agera router åt övriga datorer i det
+lokala nätverket. På så vis kan de också göra IPv6-anslutningar.
 
-\shellsource{include/cmd_ip_addr-route}
-            {Kontroll av IPv6-tunnelns status.}
-            {listing:ip_addr-route}
+Till att börja med ändrades filen \texttt{/etc/sysctl.conf}. Den ändrade
+raden visas i Programlistning~\ref{listing:sysctl}.
 
-\shellsource{include/cmd_ping6}
-            {Test av ICMP/ping till server över IPv6.}
-            {listing:ping6}
-
-Anslutningen verifieras också med hemsidorna \texttt{http://test-ipv6.com/}
-och \texttt{http://ipv6-test.com/} enligt skärmdumpar i Figur~\ref{fig:02}
-och Figur~\ref{fig:03}.
-Anslutning till servern \texttt{http://rigel.hig.se} visas i
-Figur~\ref{fig:04}.
-
-\screenshot{include/02_ipv6test}
-           {Skärmdump på test av anslutningar.}
-           {Skärmdump på test av anslutningar till nätverket från med tjänsten
-            på \texttt{http://ipv6-test.com/}.}
-           {fig:02}
-
-\screenshot{include/03_test-ipv6}
-           {Skärmdump på test av anslutningar.}
-           {Skärmdump på test av anslutningar till nätverket från med tjänsten
-            på \texttt{http://test-ipv6.com/}.}
-           {fig:03}
-
-\screenshot{include/04_rigel-hig-se}
-           {Skärmdump på test av anslutning.}
-           {Skärmdump på test av IPv6 genom anslutning till
-            \texttt{http://rigel.hig.se}.}
-           {fig:04}
-
-
+\configsource{include/conf_sysctl}
+             {Utdrag ur konfigurationsfilen \texttt{/etc/sysctl.conf}.}
+             {listing:sysctl}

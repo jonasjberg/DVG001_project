@@ -1,0 +1,16 @@
+jonas@debian:~$ ssh higjxn@jonasjberg.dynv6.net
+higjxn@jonasjberg.dynv6.net's password: 
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Fri Jun 10 15:30:25 2016 from jonasjberg-1-pt.tunnel.tserv24.sto1.ipv6.he.net
+higjxn@debian:~$   
+higjxn@debian:~$   
+higjxn@debian:~$ exit
+logout
+Connection to jonasjberg.dynv6.net closed.
+jonas@debian:~$   
