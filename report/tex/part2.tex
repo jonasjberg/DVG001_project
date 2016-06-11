@@ -39,9 +39,9 @@ Skriptet visas i Programlistning~\ref{listing:cmd_dynv6}.
 
 
 Skriptet \texttt{/root/dynv6updater} körs varje timme med ett
-\texttt{cron}-jobb \cite{misc:crontutorial}.  Kommandot \texttt{crontab -e}
-används för att konfigurera \texttt{cron}.  Konfigurationsfilen visas i
-Programlistning~\ref{listing:cron}.
+\texttt{cron}-jobb \cite{misc:crontutorial} \cite{misc:cronintro}.  Kommandot
+\texttt{crontab -e} används för att konfigurera \texttt{cron}.
+Konfigurationsfilen visas i Programlistning~\ref{listing:cron}.
 
 \configsource{include/conf_cron}
              {Konfigurationsfilen \texttt{/etc/sysctl.conf}.}
@@ -50,14 +50,17 @@ Programlistning~\ref{listing:cron}.
 
 Ett enkelt ``wrapper''-skript \texttt{/root/dynv6updater} används för att lagra
 känsliga uppgifter som behöver skickas som argument till \texttt{ipv6.sh} vid
-exekvering.  Detta skript visas i Programlistning~\ref{listing:wrapper}.
+exekvering.  Skriptet lägger också till en tidsstämpel med hjälp av programmet
+\texttt{ts} från paketet \texttt{moreutils}. Den tidsstämplade utskriften skickas
+till en loggfil, \texttt{/var/log/dynv6updater.log}.
+Detta ``wrapper''-skript visas i Programlistning~\ref{listing:wrapper}.
 
 \shellsource{include/cmd_wrapper}
-            {Enkelt wrapper-skript som körs med cron varje timme.}
+            {Enkelt ``wrapper''-skript som körs med cron varje timme.}
             {listing:wrapper}
 
 
-För att testa adressen användes en IPv6-proxy \cite{ipv6:ipv6proxy}.
+För att testa adressen används en IPv6-proxy \cite{ipv6:ipv6proxy}.
 Resultatet av testet visas i Figur~\ref{fig:05}.
 
 \screenshot{include/05_ipv6proxy}
@@ -102,15 +105,3 @@ visas i Figur~\ref{fig:06}.
 				    \texttt{http://www.infobyip.com/sshservertest.php}.}
            {fig:06}
 
-
-% ______________________________________________________________________________
-\subsection{Servern som lokal IPv6-router}
-Debian-servern kan konfigureras för att agera router åt övriga datorer i det
-lokala nätverket. På så vis kan de också göra IPv6-anslutningar.
-
-Till att börja med ändrades filen \texttt{/etc/sysctl.conf}. Den ändrade
-raden visas i Programlistning~\ref{listing:sysctl}.
-
-\configsource{include/conf_sysctl}
-             {Utdrag ur konfigurationsfilen \texttt{/etc/sysctl.conf}.}
-             {listing:sysctl}
