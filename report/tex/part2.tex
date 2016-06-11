@@ -30,6 +30,37 @@ DNS-tjänst. Detta efter tips på kursens Blackboard-forum.
 På så vis kan servern nås med en mer ``\emph{human-readable}'' adress,
 som i det här fallet valdes att vara \texttt{http://jonasjberg.dynv6.net}.
 
+
+Adressen uppdateras genom att ett skript som tillhandahålls \cite{ipv6:dynv6sh}
+av dynv6 körs regelbundet. IP-adressen har ändrats skickas den nya IP-adressen
+till dynv6 som uppdaterar DNS-servern så att
+\texttt{http://jonasjberg.dynv6.net} pekar mot Debian-serverns aktuella
+IP-adress.  Skriptet visas i Programlistning~\ref{listing:cmd_dynv6}.
+
+\shellsource{include/cmd_dynv6}
+            {Skript för automatiskt uppdatering av DNS-service.}
+            {listing:cmd_dynv6}
+
+Skriptet körs varje timme med ett \texttt{cron}-jobb \cite{misc:crontutorial}.
+Kommandot \texttt{crontab -e} används för att konfigurera \texttt{cron}.
+Konfigurationsfilen visas i Programlistning~\ref{listing:cron}.
+
+\configsource{include/conf_cron}
+             {Konfigurationsfilen \texttt{/etc/sysctl.conf}.}
+             {listing:cron}
+
+Ett enkelt ``wrapper''-skript använder för att lagra känsliga uppgifter som
+behöver skickas till \texttt{ipv6.sh} vid exekvering. Detta skript visas i
+Programlistning~\ref{listing:wrapper}.
+
+\shellsource{include/cmd_wrapper}
+            {Enkelt wrapper-skript som körs med cron varje timme.}
+            {listing:wrapper}
+
+
+
+
+
 För att testa adressen användes en IPv6-proxy \cite{ipv6:ipv6proxy}.
 Resultatet av testet visas i Figur~\ref{fig:05}.
 
@@ -38,6 +69,7 @@ Resultatet av testet visas i Figur~\ref{fig:05}.
            {Skärmdump på test av anslutning till \texttt{dynv6.net}-adressen 
 					  \texttt{http://jonasjberg.dynv6.net} genom en IPv6-proxy.}
            {fig:05}
+
 
 
 % ______________________________________________________________________________

@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+token=e2f4f746f49289c2629f333bfbd12b /root/dynv6.sh jonasjberg.dynv6.net
