@@ -1,0 +1,27 @@
+% ______________________________________________________________________________
+%
+% DVG001 -- Introduktion till Linux och små nätverk
+%                                     Projektarbete
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Author:   Jonas Sjöberg
+%           tel12jsg@student.hig.se
+%
+% Date:     2016-06-07 -- 2016-06-13
+%
+% License:  Creative Commons Attribution 4.0 International (CC BY 4.0)
+%           <http://creativecommons.org/licenses/by/4.0/legalcode>
+%           See LICENSE.md for additional licensing information.
+% ______________________________________________________________________________
+
+
+% ______________________________________________________________________________
+\section{Servern som lokal IPv6-router}
+Debian-servern kan konfigureras för att agera router åt övriga datorer i det
+lokala nätverket. På så vis kan de också göra IPv6-anslutningar.
+
+Till att börja med ändrades filen \texttt{/etc/sysctl.conf}. Den ändrade
+raden visas i Programlistning~\ref{listing:sysctl}.
+
+\configsource{include/conf_sysctl}
+             {Utdrag ur konfigurationsfilen \texttt{/etc/sysctl.conf}.}
+             {listing:sysctl}

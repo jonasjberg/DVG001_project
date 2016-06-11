@@ -16,11 +16,6 @@
 
 % ______________________________________________________________________________
 \section{Konfiguration av servern}
-\subsection{Konfiguration av fjärråtkomst}
-En del av projektets redovisning kräver att läraren ska kunna logga in på servern
-med SSH genom att använda serverns IPv6-adress. Här förbereds inför detta.
-
-
 % ______________________________________________________________________________
 \subsection{Registrering av DNS-tjänst}
 För att underlätta test och ge en mer lätthanterlig adress registrerades ett
@@ -30,35 +25,36 @@ DNS-tjänst. Detta efter tips på kursens Blackboard-forum.
 På så vis kan servern nås med en mer ``\emph{human-readable}'' adress,
 som i det här fallet valdes att vara \texttt{http://jonasjberg.dynv6.net}.
 
-
+\subsubsection{Automatisk uppdatering av DNS med cron}
 Adressen uppdateras genom att ett skript som tillhandahålls \cite{ipv6:dynv6sh}
-av dynv6 körs regelbundet. IP-adressen har ändrats skickas den nya IP-adressen
-till dynv6 som uppdaterar DNS-servern så att
-\texttt{http://jonasjberg.dynv6.net} pekar mot Debian-serverns aktuella
-IP-adress.  Skriptet visas i Programlistning~\ref{listing:cmd_dynv6}.
+av dynv6 körs regelbundet. Skriptet testar om IP-adressen har ändrats, och
+skickar isåfall den nya IP-adressen till dynv6 som uppdaterar DNS-servern så
+att \texttt{http://jonasjberg.dynv6.net} pekar mot Debian-serverns aktuella
+IP-adress.  
+Skriptet visas i Programlistning~\ref{listing:cmd_dynv6}.
 
 \shellsource{include/cmd_dynv6}
             {Skript för automatiskt uppdatering av DNS-service.}
             {listing:cmd_dynv6}
 
-Skriptet körs varje timme med ett \texttt{cron}-jobb \cite{misc:crontutorial}.
-Kommandot \texttt{crontab -e} används för att konfigurera \texttt{cron}.
-Konfigurationsfilen visas i Programlistning~\ref{listing:cron}.
+
+Skriptet \texttt{/root/dynv6updater} körs varje timme med ett
+\texttt{cron}-jobb \cite{misc:crontutorial}.  Kommandot \texttt{crontab -e}
+används för att konfigurera \texttt{cron}.  Konfigurationsfilen visas i
+Programlistning~\ref{listing:cron}.
 
 \configsource{include/conf_cron}
              {Konfigurationsfilen \texttt{/etc/sysctl.conf}.}
              {listing:cron}
 
-Ett enkelt ``wrapper''-skript använder för att lagra känsliga uppgifter som
-behöver skickas till \texttt{ipv6.sh} vid exekvering. Detta skript visas i
-Programlistning~\ref{listing:wrapper}.
+
+Ett enkelt ``wrapper''-skript \texttt{/root/dynv6updater} används för att lagra
+känsliga uppgifter som behöver skickas som argument till \texttt{ipv6.sh} vid
+exekvering.  Detta skript visas i Programlistning~\ref{listing:wrapper}.
 
 \shellsource{include/cmd_wrapper}
             {Enkelt wrapper-skript som körs med cron varje timme.}
             {listing:wrapper}
-
-
-
 
 
 För att testa adressen användes en IPv6-proxy \cite{ipv6:ipv6proxy}.
@@ -70,6 +66,11 @@ Resultatet av testet visas i Figur~\ref{fig:05}.
 					  \texttt{http://jonasjberg.dynv6.net} genom en IPv6-proxy.}
            {fig:05}
 
+
+% ______________________________________________________________________________
+\subsection{Konfiguration av fjärråtkomst}
+En del av projektets redovisning kräver att läraren ska kunna logga in på servern
+med SSH genom att använda serverns IPv6-adress. Här förbereds inför detta.
 
 
 % ______________________________________________________________________________
@@ -83,7 +84,7 @@ kommandot \texttt{adduser}.
 
 
 % ______________________________________________________________________________
-\subsection{Test av fjärråtkomst}
+\subsubsection{Test av fjärråtkomst}
 Test av inloggning över SSH med användaren \texttt{higjxn} visas i
 Programlistning~\ref{listing:ssh-higjxn}.
 
