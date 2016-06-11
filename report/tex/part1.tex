@@ -108,3 +108,21 @@ Figur~\ref{fig:04}.
            {fig:04}
 
 
+% ______________________________________________________________________________
+\subsection{Nätverksmodell}
+Nätverkets konfiguration illustreras i Figur~\ref{fig:networkgraph}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\linewidth]{include/networkgraph}
+  \caption[Diagram över nätverkets konfiguration.]
+          {Övergripande konceptuellt diagram över nätverkets
+           konfiguration.}
+  \label{fig:networkgraph}
+\end{figure}
+
+I modellen visas Debian-servern som är en VirtualBox virtuell maskin, till
+vänster. Debian-serverns nätverkstyp är inställd till \texttt{Bridged}, vilket
+innebär att värdmaskinen filtrerar ut trafik som är ämnad gästsystemet, på så
+vis att gästsystemet verkar vara kopplat direkt till värdsystemets
+nätverksadapter.
