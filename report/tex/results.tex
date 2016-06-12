@@ -15,12 +15,41 @@
 
 
 \section{Resultat}
-% TODO: ..
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Diskussion}
-% TODO: ..
+Skulle jag ha vetat det jag visste nu så skulle jag garanterat inte ha använt
+en virtuell maskin för projektet då det har lagt till ett extra lager av
+komplexitet som skulle ha kunnat undvikas. Det hade varit mycket enklare att
+använda en separat dator som helt kunde dedikeras till experiment och även
+offras utan alltför stora förluster i fall av skadeverkan till orsakad av
+crackers och annat otäckt som en direkt internetanslutning medför.
+
+Med tanke på att hela hemnätverkets säkerhet står på spel tycker jag också att
+bättre dokumentation och rådgivning borde ha funnits för konfiguration av
+brandväggar.  Även om huvudpoängen är att ``lära sig att lära'' och en väldigt
+stor del av arbete inom IT kretsar just kring att snabbt hitta rätt
+information, borde några fler riktlinjer funnits tillgängliga.  I kompendiet
+tipsades om \texttt{shorewall6}, men för att konfigurera det på egen hand med
+den experimentuppställning som använts under labben, är inte en trivial övning,
+och det faktum att ``open source''-projekt generellt kan ha bristande
+dokumentation, kanske inte uppdaterad eller motstridig, gör egna eftersökningar
+så mycket svårare.
+
+Kanske antas väldigt goda tidigare kunskaper inom området, kanske skulle detta
+belysas tydligare i instruktionerna. För många kanske det här projektet är både
+den första och sista gången de utför konfiguration av brandväggar i
+Linux-miljö, och kanske riskerar de hela familjens enheter medan de lär sig.
+Det vore bra om man kunde öva i någon form av sandlåda.
+
+
+Ett andra problem jag stötte på var praktisk testning, särskilt test av
+\texttt{SSH}-åtkomst.  Jag försökte ansluta till skolans servrar för att
+därifrån tunnla tillbaka, men då anslutningen inte gick över IPv6 hela vägen
+(antar jag?) så lyckades jag inte.  Jag registerade även ett konto på
+\texttt{sdf.org}, en gratis öppen UNIX-server, för att kunna testa, men då de
+inte erbjöd användning av IPv6 vid SSH-anslutningar gick det inte heller.
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

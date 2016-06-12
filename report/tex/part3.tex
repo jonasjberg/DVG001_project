@@ -26,16 +26,101 @@ raden visas i Programlistning~\ref{listing:sysctl}.
              {Utdrag ur konfigurationsfilen \texttt{/etc/sysctl.conf}.}
              {listing:sysctl}
 
+\subsection{DMZ}
+Det lokala nätverkets router ställs in att först skicka all trafik till
+Debian-servern genom att \texttt{DMZ} aktiveras i routerns konfiguration genom
+ett konfigurationsinterface som nås genom en webbläsare.
+Detta visas i Figur~\ref{fig:dmz}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\linewidth]{include/dmz}
+  \caption[Skärmdump på inställning av \texttt{dmz}]
+          {Skärmdump på inställning av \texttt{dmz} i nätverkets router.}
+  \label{fig:dmz}
+\end{figure}
+
+
+% ______________________________________________________________________________
+\subsection{Konfigurationsfiler}
+\subsubsection{\texttt{/etc/network/interfaces}}
+Konfigurationsfilen \texttt{/etc/network/interfaces} har nu det slutgiltiga
+utseendet i Programlistning~\ref{listing:interfaces-final}.
+
+\configsource{include/conf_interfaces-final}
+						 {Slutgiltigt innehåll i konfigurationsfilen
+					    \texttt{/etc/network/interfaces}.}
+             {listing:interfaces-final}
+
+
+\subsubsection{\texttt{/etc/radvd.conf}}
+Konfigurationsfilen \texttt{/etc/radvd.conf} får utseendet i
+Programlistning~\ref{listing:radvd} för att Debian-servern ska fungera som
+lokal IPv6-router.
+
+\configsource{include/conf_radvd}
+						 {Innehåll i konfigurationsfilen \texttt{/etc/radvd.conf}.}
+             {listing:radvd}
+
+
 \subsection{Brandvägg}
 När servern börjat routa trafik från IPv6-tunneln till det lokala
 nätverket får varje enhet på det lokala nätverket en egen publik IPv6-adress.
 De lämnas då i ett mycket sårbart läge för eventuella intrång och det
 är viktigt att en brandvägg skyddar dem. 
 
-Inställningar i brandväggen gjordes efter instruktioner från flera källor, 
-bland annat \cite{ipv6:settingup}, \cite{debian:networkconfig}
+Direkt efter att Debian-servern blottas direkt mot internet görs upprepade
+anslutningsförsök till \texttt{SSH}-servern från IP-adresser från området \texttt{121.18.238.0/24}, 
+vilket genom en uppslagning med kommandot \texttt{whois} visade sig vara från Kina.
+
+Då den enda vi förväntar oss ska ansluta till servern kommer från Sverige
+kördes ett skript \cite{blockchina} som mass-blockerar adresser från bland
+annat Kina och andra länder vi inte behöver släppa fram. Skriptet är helt
+enkelt en lång lista av \texttt{ufw deny from ADRESS to any port 22} som körs i
+sekvens.
+
+Inledningsvis användes \texttt{shorewall6} men efter upprepade misslyckanden med konfigurationen
+övergavs \texttt{shorewall} för \texttt{ufw}.
+
+Inställningar i brandväggen gjordes efter instruktioner från flera källor,
+bland annat \cite{ipv6:settingup}, \cite{debian:networkconfig},
+\cite{ipv6:tunnelswithdebian}, etc.
 
 
-% TODO: Skriv klart ..
+\subsection{Test av routade IPv6-anslutningar}
+Debian-servern förser enheter anslutna till det lokala nätverket med åtkomst av
+IPv6-adresser genom tunneln. Vid testet ansluter maskiner i det lokala
+nätverket till IPv6 genom Debian-serverns tunnel, till DNS-tjänsten dynv6 som 
+i sin tur pekar mot den hemsida som Debian-servern hostar.  Detta
+visas i Figur~\ref{fig:route1}, Figur~\ref{fig:route2}, Figur~\ref{fig:route3}
+och Figur~\ref{fig:route4}.
+
+\screenshot{include/08_ipv6routing_6465}
+           {Skärmdump på test av routad IPv6-anslutning.}
+           {Skärmdump på test av routad IPv6-anslutning genom Debian-servern, 
+            till den hemsida som Debian-servern hostar genom DNS.
+            Här från maskinen \texttt{ProBook-6465b}.}
+           {fig:route1}
+
+\screenshot{include/09_ipv6routing_probookii}
+           {Skärmdump på test av routad IPv6-anslutning.}
+           {Skärmdump på test av routad IPv6-anslutning genom Debian-servern, 
+            till den hemsida som Debian-servern hostar genom DNS.
+            Här från maskinen \texttt{ProBookII}.}
+           {fig:route2}
+
+\screenshot{include/10_ipv6routing_smartphone}
+           {Skärmdump på test av routad IPv6-anslutning.}
+           {Skärmdump på test av routad IPv6-anslutning genom Debian-servern, 
+            till den hemsida som Debian-servern hostar genom DNS.
+            Här från en Android Samsung Galaxy S4 telefon.}
+           {fig:route3}
+
+\screenshot{include/11_ipv6routing_smartphone}
+           {Skärmdump på test av routad IPv6-anslutning.}
+           {Skärmdump på test av routad IPv6-anslutning genom Debian-servern, 
+            till den hemsida som Debian-servern hostar genom DNS.
+            Här från en OnePlus X Android telefon.}
+           {fig:route4}
 
 

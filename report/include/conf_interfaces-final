@@ -1,0 +1,42 @@
+root@debian:/home/jonas/Downloads# cat /etc/network/interfaces
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+
+# Lokal statisk IP..
+auto eth0
+iface eth0 inet static
+    gateway 192.168.1.1
+    address 192.168.1.112
+    netmask 255.255.255.0
+
+
+iface eth0 inet6 static
+    address 2001:470:28:3d4::
+    gateway 2001:470:20::2
+    netmask 64
+    # up ip -6 addr add 2001:470:27:3d4::1/64 dev eth0
+    # down ip -6 addr del 2001:470:27:3d4::1/64 dev eth0
+
+
+# Hurricane Electric IPv6 Tunnel
+auto heipv6
+iface heipv6 inet6 v4tunnel
+    # HE "Client IPv6 address"
+    address 2001:470:27:3d4::2
+    netmask 64
+    # HE "Server IPv4 address"
+    endpoint 216.66.80.90
+    #local 155.4.214.77
+    local 192.168.1.112
+    ttl 255
+    gateway 2001:470:27:3d4::1
+    # HE "Server IPv6 address"
+    up ip route add 2000::0/3 via 2001:470:27:3d4::1 dev heipv6
+
