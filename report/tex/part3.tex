@@ -26,4 +26,16 @@ raden visas i Programlistning~\ref{listing:sysctl}.
              {Utdrag ur konfigurationsfilen \texttt{/etc/sysctl.conf}.}
              {listing:sysctl}
 
+\subsection{Brandvägg}
+När servern börjat routa trafik från IPv6-tunneln till det lokala
+nätverket får varje enhet på det lokala nätverket en egen publik IPv6-adress.
+De lämnas då i ett mycket sårbart läge för eventuella intrång och det
+är viktigt att en brandvägg skyddar dem. 
+
+Inställningar i brandväggen gjordes efter instruktioner från flera källor, 
+bland annat \cite{ipv6:settingup}, \cite{debian:networkconfig}
+
+
 % TODO: Skriv klart ..
+
+
