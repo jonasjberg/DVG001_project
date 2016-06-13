@@ -20,7 +20,7 @@
 För tunnel-service valdes gratistjänsten ``Tunnel Broker''
 \cite{ipv6:tunnelbroker} som erbjuds av Hurricane Electric.  
 Som ett första steg registrerades ett nytt konto. Sedan skapades en tunnel
-genom Hurricane Electrics web-interface för inloggade användare. 
+genom Hurricane Electrics webb-interface för inloggade användare. 
 Detta visas i Figur~\ref{fig:01}.
 
 \screenshot{include/01_tunnelbroker_new-tunnel}
@@ -43,7 +43,7 @@ Programlistning~\ref{listing:interfaces-static-ip}.
 
 \subsection{Konfiguration av router}
 I nätverkets routern reserveras en IP-adressen \texttt{192.168.1.112} till
-Debian-maskinens MAC-adress.
+Debian-maskinens \texttt{MAC}-adress.
 
 
 \subsection{Konfiguration av tunneln}
@@ -67,8 +67,8 @@ Programlistning~\ref{listing:ifconfig}.
             {listing:ifconfig}
 
 Brandväggen \texttt{ufw} ställs in att tillåta all trafik från Hurricane
-Electrics IP-adress \texttt{216.66.80.90} genom att köra kommandot \texttt{sudo
-ufw allow proto ipv6 from 216.66.80.90}.
+Electrics IP-adress \texttt{216.66.80.90} genom att köra kommandot 
+\texttt{sudo ufw allow proto ipv6 from 216.66.80.90}.
 
 % ______________________________________________________________________________
 \subsection{Test av tunneln}
@@ -130,8 +130,13 @@ Nätverkets konfiguration illustreras i Figur~\ref{fig:networkgraph}.
   \label{fig:networkgraph}
 \end{figure}
 
+
 I modellen visas Debian-servern som är en VirtualBox virtuell maskin, till
 vänster. Debian-serverns nätverkstyp är inställd till \texttt{Bridged}, vilket
 innebär att värdmaskinen filtrerar ut trafik som är ämnad gästsystemet, på så
 vis att gästsystemet verkar vara kopplat direkt till värdsystemets
 nätverksadapter. \cite{virtualbox:bridged}
+
+Tanken är att värdsystemet ska vara helt isolerat från den virtuella maskinen,
+och i praktiken agera som en fristående ``riktig'' maskin.
+

@@ -19,8 +19,8 @@
 Debian-servern kan konfigureras för att agera router åt övriga datorer i det
 lokala nätverket. På så vis kan de också göra IPv6-anslutningar.
 
-Till att börja med ändrades filen \texttt{/etc/sysctl.conf}. Den ändrade
-raden visas i Programlistning~\ref{listing:sysctl}.
+Till att börja med ändrades filen \texttt{/etc/sysctl.conf}. 
+Den ändrade raden visas i Programlistning~\ref{listing:sysctl}.
 
 \configsource{include/conf_sysctl}
              {Utdrag ur konfigurationsfilen \texttt{/etc/sysctl.conf}.}
@@ -29,7 +29,7 @@ raden visas i Programlistning~\ref{listing:sysctl}.
 \subsection{DMZ}
 Det lokala nätverkets router ställs in att först skicka all trafik till
 Debian-servern genom att \texttt{DMZ} aktiveras i routerns konfiguration genom
-ett konfigurationsinterface som nås genom en webbläsare.
+ett konfigurationsinterface som nås genom en webbläsare.  
 Detta visas i Figur~\ref{fig:dmz}.
 
 \begin{figure}[H]
@@ -70,21 +70,21 @@ De lämnas då i ett mycket sårbart läge för eventuella intrång och det
 är viktigt att en brandvägg skyddar dem. 
 
 Direkt efter att Debian-servern blottas direkt mot internet görs upprepade
-anslutningsförsök till \texttt{SSH}-servern från IP-adresser från området \texttt{121.18.238.0/24}, 
-vilket genom en uppslagning med kommandot \texttt{whois} visade sig vara från Kina.
+anslutningsförsök till \texttt{SSH}-servern från IP-adresser från området
+\texttt{121.18.238.0/24}, vilket genom en uppslagning med kommandot
+\texttt{whois} visade sig vara från Kina.
 
 Då den enda vi förväntar oss ska ansluta till servern kommer från Sverige
-kördes ett skript \cite{blockchina} som mass-blockerar adresser från bland
-annat Kina och andra länder vi inte behöver släppa fram. Skriptet är helt
-enkelt en lång lista av \texttt{ufw deny from ADRESS to any port 22} som körs i
-sekvens.
+kördes ett skript \cite{blockchina} som massblockerar adresser från bland annat
+Kina och andra länder vi inte behöver släppa fram. Skriptet är helt enkelt en
+lång lista av \texttt{ufw deny from ADRESS to any port 22} som körs i sekvens.
 
-Inledningsvis användes \texttt{shorewall6} men efter upprepade misslyckanden med konfigurationen
-övergavs \texttt{shorewall} för \texttt{ufw}.
+Inledningsvis användes \texttt{shorewall6} men efter upprepade misslyckanden
+med konfigurationen övergavs \texttt{shorewall} för \texttt{ufw}.
 
-Inställningar i brandväggen gjordes efter instruktioner från flera källor,
-bland annat \cite{ipv6:settingup}, \cite{debian:networkconfig},
-\cite{ipv6:tunnelswithdebian}, etc.
+Inställningar i brandväggen gjordes efter instruktioner från flera källor
+\cite{ipv6:settingup} \cite{debian:networkconfig}
+\cite{ipv6:tunnelswithdebian}.
 
 
 \subsection{Test av routade IPv6-anslutningar}
@@ -104,23 +104,42 @@ och Figur~\ref{fig:route4}.
 
 \screenshot{include/09_ipv6routing_probookii}
            {Skärmdump på test av routad IPv6-anslutning.}
-           {Skärmdump på test av routad IPv6-anslutning genom Debian-servern, 
-            till den hemsida som Debian-servern hostar genom DNS.
-            Här från maskinen \texttt{ProBookII}.}
+           {Skärmdump på test av routad IPv6-anslutning genom Debian-servern,
+            till den hemsida som Debian-servern hostar genom DNS.  Här från
+            maskinen \texttt{ProBookII}.}
            {fig:route2}
 
 \screenshot{include/10_ipv6routing_smartphone}
            {Skärmdump på test av routad IPv6-anslutning.}
-           {Skärmdump på test av routad IPv6-anslutning genom Debian-servern, 
-            till den hemsida som Debian-servern hostar genom DNS.
-            Här från en Android Samsung Galaxy S4 telefon.}
+           {Skärmdump på test av routad IPv6-anslutning genom Debian-servern,
+            till den hemsida som Debian-servern hostar genom DNS.  Här från en
+            \texttt{Samsung Galaxy S4} Android telefon.}
            {fig:route3}
 
 \screenshot{include/11_ipv6routing_smartphone}
            {Skärmdump på test av routad IPv6-anslutning.}
-           {Skärmdump på test av routad IPv6-anslutning genom Debian-servern, 
-            till den hemsida som Debian-servern hostar genom DNS.
-            Här från en OnePlus X Android telefon.}
+           {Skärmdump på test av routad IPv6-anslutning genom Debian-servern,
+            till den hemsida som Debian-servern hostar genom DNS.  Här från en
+            \texttt{OnePlus X} Android telefon.}
            {fig:route4}
 
+
+% ______________________________________________________________________________
+\subsection{Routingmodell}
+Nätverkets konfiguration illustreras i Figur~\ref{fig:routinggraph}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{include/routinggraph}
+  \caption[Diagram över nätverkets konfiguration.]
+          {Övergripande konceptuellt diagram över nätverkets konfiguration då
+           Debian-servern agerar router på det lokala nätverket.}
+  \label{fig:routinggraph}
+\end{figure}
+
+Här visas nätverket då Debian-servern agerar router åt det lokala nätverket.
+Klienter får IPv6-adresser av programmet ``Router Advertisement Daemon''
+(\texttt{radvd}) \cite{ipv6:radvd} som körs på Debian-servern.  Klienterna får
+en adress ur området \texttt{2001:470:28:3d4::/64} som tilldelats av Hurricane
+Electric.
 

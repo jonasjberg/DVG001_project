@@ -16,6 +16,13 @@
 
 % ______________________________________________________________________________
 \section{Konfiguration av servern}
+Debian-servern använder samma konfiguration av \texttt{Apache} som under
+tidigare laborationer. Den hemsida som visas är ett utdrag ur mina personliga
+kursanteckningar, som likt den tidigare hemsidan är skrivna som textfiler i
+\texttt{markdown}\cite{Gruber2013}-syntax som sedan konverteras till
+\texttt{html} med programmet \texttt{pandoc}\cite{MacFarlane2013}.
+
+
 % ______________________________________________________________________________
 \subsection{Registrering av DNS-tjänst}
 För att underlätta test och ge en mer lätthanterlig adress registrerades ett
@@ -72,8 +79,9 @@ Resultatet av testet visas i Figur~\ref{fig:05}.
 
 % ______________________________________________________________________________
 \subsection{Konfiguration av fjärråtkomst}
-En del av projektets redovisning kräver att läraren ska kunna logga in på servern
-med SSH genom att använda serverns IPv6-adress. Här förbereds inför detta.
+En del av projektets redovisning kräver att läraren ska kunna logga in på
+servern med \texttt{SSH} genom att använda serverns IPv6-adress. Här förbereds inför
+detta.
 
 
 % ______________________________________________________________________________
@@ -88,20 +96,20 @@ kommandot \texttt{adduser}.
 
 % ______________________________________________________________________________
 \subsubsection{Test av fjärråtkomst}
-Test av inloggning över SSH med användaren \texttt{higjxn} visas i
+Test av inloggning över \texttt{SSH} med användaren \texttt{higjxn} visas i
 Programlistning~\ref{listing:ssh-higjxn}.
 
 \shellsource{include/cmd_ssh-higjxn}
-            {Test av SSH med användaren \texttt{higjxn}.}
+            {Test av \texttt{SSH} med användaren \texttt{higjxn}.}
             {listing:ssh-higjxn}
 
-Ett andra test av åtkomst över SSH med hjälp av ett onlineverktyg på adressen
-\url{http://www.infobyip.com/sshservertest.php} \cite{ipv6:sshservertest}
-visas i Figur~\ref{fig:06}.
+Ett andra test av åtkomst över \texttt{SSH} med hjälp av ett onlineverktyg
+\cite{ipv6:sshservertest} visas i Figur~\ref{fig:06}.
 
 \screenshot{include/06_ssh-test}
-           {Skärmdump på test av SSH-server.}
-					 {Skärmdump på test av SSH-anslutning med hjälp av onlineverktyget 
-				    \texttt{http://www.infobyip.com/sshservertest.php}.}
+           {Skärmdump på test av \texttt{SSH}-server.}
+           {Skärmdump på test av \texttt{SSH}-anslutning med hjälp av
+            onlineverktyget på adressen
+            \texttt{http://www.infobyip.com/sshservertest.php}.}
            {fig:06}
 
